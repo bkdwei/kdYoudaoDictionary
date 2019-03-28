@@ -23,9 +23,9 @@ class kdYoudaoDictionary(QWidget):
         for translate_type in from_to_type.translate_types:
             self.cb_from_to.addItem(translate_type[1])
 
-        appKey_config_file = "appKey_config.json"
-        check_and_create(os.getcwd() + "/" + appKey_config_file)
-        with open(appKey_config_file, "r") as f:
+        appKey_config_file = get_file_realpath("appKey_config.json")
+        check_and_create(appKey_config_file)
+        with open(appKey_config_file, "r",encoding="utf-8") as f:
             content = f.read().strip()
             if content != "":
                 conf = json.loads(content)
