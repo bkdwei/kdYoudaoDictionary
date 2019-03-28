@@ -10,6 +10,7 @@ import json
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QWidget
+from PyQt5.QtGui import QIcon
 from PyQt5.uic import loadUi
 from . import from_to_type
 from .fileutil import get_file_realpath,check_and_create
@@ -19,6 +20,8 @@ class kdYoudaoDictionary(QWidget):
     def __init__(self):
         super(kdYoudaoDictionary, self).__init__()
         loadUi(get_file_realpath("kdYoudaoDictionary.ui"), self)
+        self.setWindowIcon(QIcon(get_file_realpath('data/Dictionary-icon.png')))
+        
 
         for translate_type in from_to_type.translate_types:
             self.cb_from_to.addItem(translate_type[1])
