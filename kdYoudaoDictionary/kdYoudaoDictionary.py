@@ -11,20 +11,20 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QWidget
 from PyQt5.uic import loadUi
-import from_to_type
-import fileutil
+from . import from_to_type
+from .fileutil import get_file_realpath,check_and_create
 
 
 class kdYoudaoDictionary(QWidget):
     def __init__(self):
         super(kdYoudaoDictionary, self).__init__()
-        loadUi("kdYoudaoDictionary.ui", self)
+        loadUi(get_file_realpath("kdYoudaoDictionary.ui"), self)
 
         for translate_type in from_to_type.translate_types:
             self.cb_from_to.addItem(translate_type[1])
 
         appKey_config_file = "appKey_config.json"
-        fileutil.check_and_create(os.getcwd() + "/" + appKey_config_file)
+        check_and_create(os.getcwd() + "/" + appKey_config_file)
         with open(appKey_config_file, "r") as f:
             content = f.read().strip()
             if content != "":
@@ -110,7 +110,7 @@ class kdYoudaoDictionary(QWidget):
         self.tb_result.setText(show_result)
 
 
-if __name__ == "__main__":
+def main():
     app = QtWidgets.QApplication(sys.argv)
     win = kdYoudaoDictionary()
     win.show()
