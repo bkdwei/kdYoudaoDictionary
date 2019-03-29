@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QIcon
 from PyQt5.uic import loadUi
 from . import from_to_type
-from .fileutil import get_file_realpath,check_and_create
+from .fileutil import get_file_realpath,check_and_create_file
 
 
 class kdYoudaoDictionary(QWidget):
@@ -27,7 +27,7 @@ class kdYoudaoDictionary(QWidget):
             self.cb_from_to.addItem(translate_type[1])
 
         appKey_config_file = get_file_realpath("appKey_config.json")
-        check_and_create(appKey_config_file)
+        check_and_create_file(appKey_config_file)
         with open(appKey_config_file, "r",encoding="utf-8") as f:
             content = f.read().strip()
             if content != "":
